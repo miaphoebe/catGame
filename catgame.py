@@ -25,7 +25,7 @@ class player(object):
         self.right = False
         self.lastLeft = False
         self.walkCount = 0
-        self.hitbox = (self.x, self.y + 15, 60, 50)
+        self.hitbox = (self.x + 5, self.y + 25, 55, 40)
     walkRight = [pygame.image.load('cat0.png'), 
                 pygame.image.load('cat1.png'),
                 pygame.image.load('cat2.png'),
@@ -52,6 +52,7 @@ class player(object):
             screen.blit(self.leftChar, (self.x, self.y))
         else:
             screen.blit(self.char, (self.x, self.y))
+        self.hitbox = (self.x + 5, self.y + 25, 55, 40)
         pygame.draw.rect(screen, (255,0,0), self.hitbox, 2)
 
 class projectile(object):
@@ -83,6 +84,7 @@ class npc(object):
         self.walkCount = 0
         self.vel = 3
         self.path = [self.x, self.end]
+        self.hitbox = (self.x + 13, self.y + 12, 35, 48)
     
     def draw(self, screen):
         self.move()
@@ -94,6 +96,8 @@ class npc(object):
         else: 
             screen.blit(self.walkLeft[self.walkCount // 3], (self.x, self.y))
             self.walkCount += 1
+        self.hitbox = (self.x + 13, self.y + 12, 35, 48)
+        pygame.draw.rect(screen, (255,0,0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
